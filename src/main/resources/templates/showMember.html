@@ -18,11 +18,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>홍길동</td>
-                <td>90</td>
-                <td>제주도</td>
+            <tr th:each="member : ${list}" th:object="${member}">
+                <td th:text="*{id}">1</td>
+                <td th:text="*{name}">홍길동</td>
+                <td th:text="*{age}">90</td>
+                <td th:text="*{address}">제주도</td>
                 <td>
                     <form>
                         <input type="submit" value="수정">
