@@ -1,5 +1,6 @@
 package com.my.member.controller;
 
+import com.my.member.dto.MemberDto;
 import com.my.member.entity.Member;
 import com.my.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class MemberController {
     public String showList(Model model) {
         model.addAttribute("title", "리스트보기");
         // 서비스에 멤버리스트 정보 요청
-        List<Member> memberList = service.getAllList();
+        List<MemberDto> memberList = service.getAllList();
         model.addAttribute("list", memberList);
         return "showMember";
     }
