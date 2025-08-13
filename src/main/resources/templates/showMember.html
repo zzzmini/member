@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Title</title>
+</head>
+<body align="center">
+    <h1>멤버리스트 보기</h1>
+    <table border="1" align="center">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>이름</th>
+                <th>나이</th>
+                <th>주소</th>
+                <th>수정</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>홍길동</td>
+                <td>90</td>
+                <td>제주도</td>
+                <td>
+                    <form>
+                        <input type="submit" value="수정">
+                    </form>
+                </td>
+                <td>
+                    <form>
+                        <input type="submit" value="삭제">
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <form>
+        <input type="submit" value="신규멤버입력">
+    </form>
+</body>
+</html>
