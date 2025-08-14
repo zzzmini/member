@@ -24,8 +24,9 @@
                 <td th:text="*{age}">90</td>
                 <td th:text="*{address}">제주도</td>
                 <td>
-                    <form>
+                    <form th:action="@{/member/updateView}" method="get">
                         <input type="submit" value="수정">
+                        <input type="hidden" name="updateId" th:value="*{id}">
                     </form>
                 </td>
                 <td>

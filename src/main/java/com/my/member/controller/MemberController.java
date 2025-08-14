@@ -6,9 +6,11 @@ import com.my.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -49,5 +51,21 @@ public class MemberController {
     public String deleteMember(@PathVariable("id")Long id) {
         service.deleteMember(id);
         return "redirect:/list";
+    }
+
+    @GetMapping("/member/updateView")
+    public String updateView(
+            @RequestParam("updateId")Long updateId,
+            Model model) {
+        // 1. 받은 수정 아이디로 데이터를 검색해 온다.(DTO)
+        MemberDto dto = service.findMember(updateId);
+        // 2. DTO가 비어있는지 확인한다. ID의 유무를 확인 -> 조치
+        if (ObjectUtils.isEmpty(dto)) {
+            return "redirect:/list";
+        } else {
+            // 3. 받은 DTO를 수정폼으로 보낸다.
+            model.addAttribute("dto", dto);
+            return "updateForm";
+        }
     }
 }
