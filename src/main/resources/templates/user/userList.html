@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>유저리스트</title>
+</head>
+<body align="center">
+<h1>유저리스트 보기</h1>
+<table border="1" align="center">
+    <thead>
+    <tr>
+        <th>이메일</th>
+        <th>비밀번호</th>
+        <th>닉네임</th>
+        <th>수정</th>
+        <th>삭제</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${list}==null">
+        <td colspan="6">데이터가 없습니다.</td>
+    </tr>
+    <tr th:unless="${list}==null" th:each="member : ${list}" th:object="${member}">
+        <td th:text="*{email}">1</td>
+        <td th:text="*{password}">홍길동</td>
+        <td th:text="*{nickname}">90</td>
+        <td>
+            <form th:action="@{/user/update}" method="post">
+                <input type="submit" value="수정">
+                <input type="hidden" name="email" th:value="*{email}">
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/user/delete}" method="post">
+                <input type="submit" value="삭제">
+                <input type="hidden" name="email" th:value="*{email}">
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/}">메인화면</a>
+</body>
+</html>
