@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -39,5 +41,12 @@ public class UserController {
     @GetMapping("update")
     public String updateForm() {
         return "/user/userUpdate";
+    }
+
+    @GetMapping("list")
+    public String userList(Model model) {
+        List<UserDto> list = userService.findAllUser();
+        model.addAttribute("list", list);
+        return "/user/userList";
     }
 }

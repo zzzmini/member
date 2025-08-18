@@ -5,6 +5,8 @@ import com.my.member.entity.UserEntity;
 import com.my.member.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -19,5 +21,12 @@ public class UserService {
         UserEntity entity = UserDto.toDto(dto);
         // 저장
         userRepository.save(entity);
+    }
+
+    public List<UserDto> findAllUser() {
+        return userRepository.findAll()
+                .stream()
+                .map(x -> UserDto.fromEntity(x))
+                .toList();
     }
 }
