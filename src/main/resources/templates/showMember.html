@@ -18,7 +18,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="member : ${list}" th:object="${member}">
+            <tr th:if="${list}==null">
+                <td colspan="6">데이터가 없습니다.</td>
+            </tr>
+            <tr th:unless="${list}==null" th:each="member : ${list}" th:object="${member}">
                 <td th:text="*{id}">1</td>
                 <td th:text="*{name}">홍길동</td>
                 <td th:text="*{age}">90</td>

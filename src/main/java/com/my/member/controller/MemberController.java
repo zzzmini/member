@@ -75,10 +75,18 @@ public class MemberController {
 
     @GetMapping("/member/search")
     public String search(@RequestParam("type")String type,
-                         @RequestParam("keyword")String keyword) {
+                         @RequestParam("keyword")String keyword,
+                         Model model) {
         List<MemberDto> searchList = service.searchMember(type, keyword);
-        return null;
-        //   select * from member where address like '%서울%';
+        if (ObjectUtils.isEmpty(searchList)) {
+            // 검색 결과가 없을 경우
+            searchList = null;
+            model.addAttribute("list", searchList);
+        } else {
+          // 검색 결과가 있을 경우
+            model.addAttribute("list", searchList);
+        }
+        return "showMember";
     }
 }
 
