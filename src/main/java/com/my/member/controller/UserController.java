@@ -79,7 +79,7 @@ public class UserController {
             session.setAttribute("loginEmail", dto.getEmail());
             // 세션 유지 시간
             session.setMaxInactiveInterval(60 * 30);
-            return "main";
+            return "redirect:/";
         } else {
             // 틀리면 : login form 보여준다.
             return "/user/login";
