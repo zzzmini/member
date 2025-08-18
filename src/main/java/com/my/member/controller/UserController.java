@@ -4,6 +4,7 @@ import com.my.member.dto.UserDto;
 import com.my.member.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -61,5 +62,21 @@ public class UserController {
     public String updateUser(@ModelAttribute("user")UserDto user) {
         userService.saveUser(user);
         return "redirect:/user/list";
+    }
+
+    @PostMapping("login")
+    public String login(UserDto dto) {
+        // 1. dto.email을 갖고 User 검색...
+        UserDto loginResult = userService.findOneUser(dto.getEmail());
+        // 2. 해당 유저가 있는지 확인한다.
+        if (ObjectUtils.isEmpty(loginResult)) {
+            // 로그인 실패
+            return "/user/login";
+        } else {
+            // 3. password 가 맞는지 확인한다.
+            // 틀리면 : login form 보여준다.
+            // 맞으면 : 세션을 만들어 준다.
+        }
+        return null;
     }
 }
