@@ -10,6 +10,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//1. 로그인 된 상태에서
+//내정보 수정하기 -> 현 세션(이메일)정보를
+//바탕으로 수정화면 열고 처리하기
+//2. 유저리스트 페이지
+//admin@a.b -> 얘만 들어갈 수 있도록
+//나머지 유저들은 메뉴가 안보이게
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -91,5 +98,11 @@ public class UserController {
         // 세션을 삭제하는 메서드
         session.invalidate();
         return "main";
+    }
+
+    @GetMapping("myInfo")
+    public String myInfo(HttpSession session) {
+        String myEmail = session.getAttribute("loginEmail").toString();
+        return null;
     }
 }
