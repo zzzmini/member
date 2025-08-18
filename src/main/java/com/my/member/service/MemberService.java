@@ -82,4 +82,10 @@ public class MemberService {
         // 2. 수정 요청
         repository.save(member);
     }
+
+    public List<MemberDto> searchMember(String type, String keyword) {
+        List<Member> memberList = repository.searchQuery();
+        System.out.println(memberList);
+        return null;
+    }
 }

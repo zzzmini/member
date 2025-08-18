@@ -38,6 +38,19 @@
         </tbody>
     </table>
     <br>
+    <hr>
+    <form th:action="@{/member/search}" method="get" align="center">
+        <select name="type">
+        <!--   type = 'name' or type = 'address'         -->
+            <option selected value="">검색내용선택</option>
+            <option value="name">이름</option>
+            <option value="address">주소</option>
+        </select>
+        <input type="text" name="keyword" placeholder="검색어를 입력하세요">
+        <input type="submit" value="검색">
+    </form>
+    <hr>
+    <br>
     <form  th:action="@{/member/insertForm}"  method="get">
         <input type="submit" value="신규멤버입력">
     </form>

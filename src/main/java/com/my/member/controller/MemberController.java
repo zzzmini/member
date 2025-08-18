@@ -72,4 +72,23 @@ public class MemberController {
         service.updateMember(dto);
         return "redirect:/list";
     }
+
+    @GetMapping("/member/search")
+    public String search(@RequestParam("type")String type,
+                         @RequestParam("keyword")String keyword) {
+        List<MemberDto> searchList = service.searchMember(type, keyword);
+        return null;
+        //   select * from member where address like '%서울%';
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
