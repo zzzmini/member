@@ -8,15 +8,18 @@
   <form th:action="@{/member/insert}" method="post">
     <div>
       <label for="name">이름</label>
-      <input type="text" name="name">
+      <input type="text" name="name" th:field="${dto.name}">
+      <span th:errors="${dto.name}" style="font-size : 10; color : red"></span>
     </div>
     <div>
       <label for="age">나이</label>
-      <input type="text" name="age">
+      <input type="text" name="age" th:field="${dto.age}">
+      <span th:errors="${dto.age}" style="font-size : 10; color : red"></span>
     </div>
     <div>
       <label for="address">주소</label>
-      <input type="text" name="address">
+      <input type="text" name="address" th:field="${dto.address}">
+      <span th:errors="${dto.address}" style="font-size : 10; color : red"></span>
     </div>
     <div>
       <input type="submit" value="등록">
