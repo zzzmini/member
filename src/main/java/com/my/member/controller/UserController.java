@@ -1,6 +1,7 @@
 package com.my.member.controller;
 
 import com.my.member.dto.UserDto;
+import com.my.member.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+    // UserService를 생성자주입 방식으로 추가
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
     @GetMapping("login")
     public String loginForm() {
         return "/user/login";
@@ -24,8 +32,8 @@ public class UserController {
 
     @PostMapping("signup")
     public String signup(@ModelAttribute("user") UserDto dto) {
-        System.out.println(dto);
-        return null;
+        userService.saveUser(dto);
+        return "redirect:/";
     }
 
     @GetMapping("update")

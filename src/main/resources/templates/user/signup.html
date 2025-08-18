@@ -5,10 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-<form th:action="@{/user/signup}" method="post" th:object="${user}">
+<form th:action="@{/user/signup}" method="post"
+      th:object="${user}"  onsubmit="return confirmPassword()">
     <div>
         <label for="email">이메일</label>
-        <input type="email" id="email" name="email" th:field="*{email}">
+        <input type="email" id="email" name="email" th:field="*{email}" required>
     </div>
     <div>
         <label for="password">비밀번호</label>
@@ -26,5 +27,16 @@
     <input type="submit" value="회원가입">
 </form>
 <a th:href="@{/}">메인화면</a>
+<script>
+    function confirmPassword(){
+        const pw = document.querySelector("#password").value;
+        const pw2 = document.querySelector("#password2").value;
+        if(pw !== pw2){
+            alert("비밀번호가 일치하지 않아요");
+            return false; // 폼을 post로 제출하는 것을 막는것
+        }
+        return true;  // 통과하면 submit 실행
+    }
+</script>
 </body>
 </html>
