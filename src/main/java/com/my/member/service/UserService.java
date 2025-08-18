@@ -29,4 +29,13 @@ public class UserService {
                 .map(x -> UserDto.fromEntity(x))
                 .toList();
     }
+
+    public void deleteUser(String email) {
+        userRepository.deleteById(email);
+    }
+
+    public UserDto findOneUser(String email) {
+        UserEntity entity = userRepository.findById(email).orElse(null);
+        return UserDto.fromEntity(entity);
+    }
 }
