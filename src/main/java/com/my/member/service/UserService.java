@@ -3,19 +3,21 @@ package com.my.member.service;
 import com.my.member.dto.UserDto;
 import com.my.member.entity.UserEntity;
 import com.my.member.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+//    public UserService(UserRepository userRepository) {
+//        this.userRepository = userRepository;
+//    }
 
     public void saveUser(UserDto dto) {
         // dto -> Entity
