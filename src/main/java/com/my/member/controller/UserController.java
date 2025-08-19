@@ -101,8 +101,11 @@ public class UserController {
     }
 
     @GetMapping("myInfo")
-    public String myInfo(HttpSession session) {
+    public String myInfo(HttpSession session, Model model) {
         String myEmail = session.getAttribute("loginEmail").toString();
-        return null;
+        // 사용자 정보를 하나 찾아서 온다.
+        UserDto user = userService.findOneUser(myEmail);
+        model.addAttribute("user", user);
+        return "/user/userUpdate";
     }
 }

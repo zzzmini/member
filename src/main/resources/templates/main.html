@@ -16,7 +16,9 @@
     <div th:if="${session.loginEmail}!=null">
         <li><a th:href="@{/user/logout}">로그아웃</a></li>
         <li><a th:href="@{/user/myInfo}">내 정보 수정</a></li>
-        <li><a th:href="@{/user/list}">사용자정보리스트</a></li>
+        <div th:if="${session.loginEmail}=='admin@a.b'">
+            <li><a th:href="@{/user/list}">사용자정보리스트</a></li>
+        </div>
         <li><a th:href="@{list}">멤버리스트 보기</a></li>
     </div>
 </ul>
